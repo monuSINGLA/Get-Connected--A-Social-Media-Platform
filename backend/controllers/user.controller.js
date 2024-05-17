@@ -112,13 +112,13 @@ const updateUser = async (req, res) => {
         return res.status(404).json({error: "User not found"})
     }
 
-    const usernameAlreadyExist = await User.findOne({username})
-    if(usernameAlreadyExist){
+    const isUsernameAlreadyExist = await User.findOne({username})
+    if(isUsernameAlreadyExist){
       return res.status(400).json({error: "Username is Already Taken"})
     }
 
-    const emailAlreadyExist = await User.findOne({email})
-    if(emailAlreadyExist){
+    const isEmailAlreadyExist = await User.findOne({email})
+    if(isEmailAlreadyExist){
       return res.status(400).json({error: "Email is Already Taken"})
     }
 
