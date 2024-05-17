@@ -1,6 +1,6 @@
 import { Router } from "express";
 import protectRoute from "../middleware/protectRoute.js";
-import { followUnfollowUser, getSuggestedUsers, getUserProfile, updateUser } from "../controllers/user.controller.js";
+import { followUnfollowUser, getSuggestedUsers, getUserProfile, updateUser } from "../controllers/user.controllers.js";
 
 
 const router = Router()

@@ -46,7 +46,7 @@ const getSuggestedUsers = async (req, res) => {
 
     res.status(200).json(suggestedUsers);
   } catch (error) {
-    console.log("Error in getUserProfile controller", error.message);
+    console.log("Error in getSuggestedUsers controller", error.message);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -94,7 +94,7 @@ const followUnfollowUser = async (req, res) => {
       res.status(200).json({ message: "User followed successfully" });
     }
   } catch (error) {
-    console.log("Error in getUserProfile controller", error.message);
+    console.log("Error in followUnfollow controller", error.message);
     return res.status(500).json({ error: error.message });
   }
 };
