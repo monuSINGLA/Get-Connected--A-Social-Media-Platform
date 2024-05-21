@@ -1,12 +1,13 @@
-import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import SignUpPage from './pages/auth/signup/SignUpPage'
-import LoginPage from './pages/auth/login/LoginPage'
+
 import HomePage from './pages/home/HomePage'
-import Sidebar from './components/common/Sidebar'
-import RightPanel from './components/common/RightPanel'
+import LoginPage from './pages/auth/login/LoginPage'
+import SignUpPage from './pages/auth/signup/SignUpPage'
 import NotificationPage from './pages/notification/NotificationPage'
 import ProfilePage from './pages/profile/ProfilePage'
+
+import Sidebar from './components/common/Sidebar'
+import RightPanel from './components/common/RightPanel'
 
 const App = () => {
   return (
