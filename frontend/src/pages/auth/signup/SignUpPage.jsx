@@ -18,7 +18,7 @@ const SignUpPage = () => {
 		password: "",
 	});
 
-	const {mutate, isError, isPending, error} = useMutation({
+	const {mutate: signupMutation, isError, isPending, error} = useMutation({
 		mutationFn : async ({email, username, fullName, password}) => {
 			try {
 				const res  = await fetch("/api/v1/auth/signup",{
@@ -35,7 +35,7 @@ const SignUpPage = () => {
 				return data;
 			} catch (error) {
 				console.error(error)
-				throw error
+				throw new Error(error.message)
 			}
 		},
 		onSuccess : ()=> {
@@ -45,7 +45,7 @@ const SignUpPage = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		mutate(formData)
+		signupMutation(formData)
 	};
 
 	const handleInputChange = (e) => {
