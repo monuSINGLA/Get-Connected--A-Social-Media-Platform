@@ -5,19 +5,53 @@ import { FaRegBookmark } from "react-icons/fa6";
 import { FaTrash } from "react-icons/fa";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Post = ({ post }) => {
 	const [comment, setComment] = useState("");
+
+	//get current user by react querry 
+	const {data: autUser} = useQuery({ queryKey : ["authUser"] })
+
+	const queryClient = useQueryClient()
+	
+	const{mutate: deletePost, isPending} = useMutation({
+		mutationFn: async () => {
+			try {
+				const res = await fetch(`/api/v1/posts/${post?._id}`,{
+					method : "DELETE",
+					headers: {
+						"Content-Type" : "application/josn"
+					}
+				})
+				const data = await res.json()
+
+				if(!res.ok) throw new Error(data.error || "Unable to delete post right now")
+			} catch (error) {
+				throw new Error(error.message)
+			}
+		},
+		onSuccess : ()=> {
+			toast.success("Post deleted successfully")
+			//invalidate querry to fetch updated  posts again
+			queryClient.invalidateQueries({queryKey: ["posts"]})
+		}
+	})
+
 	const postOwner = post.user;
 	const isLiked = false;
 
-	const isMyPost = true;
+	const isMyPost = autUser?._id === post?.user?._id
 
-	const formattedDate = "1h";
+	const formattedDate = post?.createdAt;
 
 	const isCommenting = false;
 
-	const handleDeletePost = () => {};
+	const handleDeletePost = () => {
+		deletePost()
+	};
 
 	const handlePostComment = (e) => {
 		e.preventDefault();
@@ -45,7 +79,8 @@ const Post = ({ post }) => {
 						</span>
 						{isMyPost && (
 							<span className='flex justify-end flex-1'>
-								<FaTrash className='cursor-pointer hover:text-red-500' onClick={handleDeletePost} />
+								{!isPending && <FaTrash className='cursor-pointer hover:text-red-500' onClick={handleDeletePost} />}
+								{isPending && <LoadingSpinner size="sm"/>}
 							</span>
 						)}
 					</div>
@@ -118,6 +153,7 @@ const Post = ({ post }) => {
 												"Post"
 											)}
 										</button>
+										
 									</form>
 								</div>
 								<form method='dialog' className='modal-backdrop'>
