@@ -14,7 +14,6 @@ const RightPanel = () => {
 				const res = await fetch("/api/v1/users/suggested")
 				const data = await res.json()
 				if(!res.ok) throw new Error(data.error || "Failed to load suggested users")
-				console.log(data)
 				return data
 			} catch (error) {
 				throw new Error(error.message)
