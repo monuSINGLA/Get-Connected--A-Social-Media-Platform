@@ -30,7 +30,7 @@ const POST_ENDPOINT = getPostEndpoint();
 	  }
     },
   });
-  console.log(posts)
+  // console.log(posts)
 
   useEffect(()=>{
 	refetch()
