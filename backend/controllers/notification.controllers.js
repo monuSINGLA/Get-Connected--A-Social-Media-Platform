@@ -34,7 +34,7 @@ const deleteNotifications = async (req, res) =>{
 
         await Notification.deleteMany({to : userId})
 
-        res.status(400).json({messgae: "Notifications deleted successfully"})
+        res.status(200).json({messgae: "Notifications deleted successfully"})
         
     } catch (error) {
         console.log("Error in deleteNotifications controller", error.message)
