@@ -119,7 +119,7 @@ const Post = ({ post }) => {
   const isLiked = post?.likes.includes(autUser?._id);
   const isMyPost = autUser?._id === post?.user?._id;
 
-  const formattedDate = formatRelativeTime(post?.createdAt);
+  const postCreateDate = formatRelativeTime(post?.createdAt);
 
   const handleDeletePost = () => {
     deletePost();
@@ -165,7 +165,7 @@ const Post = ({ post }) => {
                 @{postOwner.username}
               </Link>
               <span>·</span>
-              <span>{formattedDate}</span>
+              <span>{postCreateDate}</span>
             </span>
             {isMyPost && (
               <span className="flex justify-end flex-1">

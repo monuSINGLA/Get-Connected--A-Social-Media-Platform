@@ -190,10 +190,6 @@ const getLikedPosts = async (req,res) => {
       select: "-paasword"
     })
 
-    if(likedPosts.length === 0){
-      return res.status(201).json([])
-    }
-
     res.status(200).json(likedPosts)
     
   } catch (error) {
@@ -243,6 +239,7 @@ const getUserPosts = async (req, res) => {
     }
 
     const userPosts = await Post.find({user: user._id})
+    .sort({createdAt: -1})
     .populate({
       path : "user",
       select: "-passowrd"
@@ -252,14 +249,10 @@ const getUserPosts = async (req, res) => {
       select: "-password"
     })
 
-    if(userPosts.length === 0){
-      return res.status(400).json({error: "Post not found"})
-    }
-
     res.status(200).json(userPosts)
     
   } catch (error) {
-    console.log("Error in getFollowingPosts controller", error.message);
+    console.log("Error in getUserPosts controller", error.message);
     return res.status(500).json({ error: "Internal server error" });  
   }
 }

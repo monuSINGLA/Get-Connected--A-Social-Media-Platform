@@ -4,7 +4,6 @@ import LoadingSpinner from "../../components/common/LoadingSpinner";
 
 import { FaTrash } from "react-icons/fa";
 
-import { IoSettingsOutline } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 import toast from "react-hot-toast";
@@ -55,19 +54,10 @@ const NotificationPage = () => {
 			<div className='flex-[4_4_0] border-l border-r border-gray-700 min-h-screen'>
 				<div className='flex justify-between items-center p-4 border-b border-gray-700'>
 					<p className='font-bold'>Notifications</p>
-					<div className='dropdown dropdown-left '>
-						<div tabIndex={0} role='button' className='m-1'>
-							{isPending ? <LoadingSpinner size="sm"/> : <IoSettingsOutline className='w-4' />}
+						<div className='m-1 flex justify-center items-center gap-1'>
+							Delete all
+							{isPending? <LoadingSpinner size="sm"/> : <FaTrash className="cursor-pointer hover:text-red-600" onClick={deleteNotifications}/>}
 						</div>
-						<ul
-							tabIndex={0}
-							className='dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52'
-						>
-							<li>
-								<a className="hover:bg-red-800" onClick={deleteNotifications}>Delete all notifications <FaTrash/></a>
-							</li>
-						</ul>
-					</div>
 				</div>
 				{isLoading && (
 					<div className='flex justify-center h-full items-center'>
