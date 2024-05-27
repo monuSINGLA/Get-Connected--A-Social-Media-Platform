@@ -112,16 +112,6 @@ const updateUser = async (req, res) => {
         return res.status(404).json({error: "User not found"})
     }
 
-    const isUsernameAlreadyExist = await User.findOne({username})
-    if(isUsernameAlreadyExist){
-      return res.status(400).json({error: "Username is Already Taken"})
-    }
-
-    const isEmailAlreadyExist = await User.findOne({email})
-    if(isEmailAlreadyExist){
-      return res.status(400).json({error: "Email is Already Taken"})
-    }
-
     if((!newPassword && currentPassword) || (!currentPassword && newPassword)){
         return res.status(400).json({error: "Please provide both current password and new password"})
     }

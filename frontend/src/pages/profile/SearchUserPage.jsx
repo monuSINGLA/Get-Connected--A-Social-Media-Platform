@@ -17,7 +17,6 @@ const SearchUserPage = () => {
       try {
         const res = await fetch(`api/v1/users/profile/${username.trim()}`);
         const user = await res.json();
-        console.log(data);
         if (!res.ok) throw new Error(user.error);
         setData(user);
       } catch (error) {
