@@ -100,7 +100,6 @@ const Post = ({ post }) => {
       }
     },
     onSuccess: (data) => {
-      toast.success("comment added successfully");
       queryClient.setQueryData(["posts"], (oldData) => {
         return oldData.map((p) => {
           if (p._id === post._id) {
