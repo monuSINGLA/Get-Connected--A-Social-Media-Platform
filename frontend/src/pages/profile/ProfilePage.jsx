@@ -155,9 +155,7 @@ const ProfilePage = () => {
                     className="btn btn-outline rounded-full btn-sm"
                     onClick={() => {
                       follow(user?._id);
-                      queryClient.invalidateQueries({
-                        queryKey: ["userProfile"],
-                      });
+                      queryClient.invalidateQueries({queryKey: ["userProfile"]});
                     }}
                   >
                     {isFollowing && <LoadingSpinner size="sm" />}
