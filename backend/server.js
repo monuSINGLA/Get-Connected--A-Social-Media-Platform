@@ -11,6 +11,7 @@ import notificationRoutes from "./routes/notification.routes.js";
 
 import connectMongoDB from "./db/connectMongoDB.js";
 import { fileURLToPath } from "url";
+import job from "./cron/cron.js";
 
 donenv.config();
 
@@ -50,3 +51,5 @@ app.listen(PORT, () => {
   console.log(`server is running on port : ${PORT}`);
   connectMongoDB();
 });
+
+job.start()

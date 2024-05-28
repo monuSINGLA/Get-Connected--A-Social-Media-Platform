@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "set NODE_ENV=development && nodemon backend/server.js",
-    "start" : "set NODE_ENV=production && node backend/server.js",
-    "build" : "npm install && npm install --prefix frontend && npm run build --prefix frontend"
+    "start": "set NODE_ENV=production && node backend/server.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,7 @@
     "cloudinary": "^2.2.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "cron": "^3.1.7",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
