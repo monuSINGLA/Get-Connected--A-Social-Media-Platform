@@ -14,6 +14,7 @@ const SearchUserPage = () => {
   const { mutate: searchUser, isPending, isError, error } = useMutation({
     mutationFn: async (username) => {
       if(!username)return 
+      setData(null)
       try {
         const res = await fetch(`api/v1/users/profile/${username.trim()}`);
         const user = await res.json();
@@ -31,9 +32,8 @@ const SearchUserPage = () => {
         <div className="flex justify-between items-center p-4 border-b border-gray-700">
           <form
             className="w-full flex"
-            onSubmit={async (e) => {
+            onSubmit={ (e) => {
               e.preventDefault();
-              setData(null)
               if(!username) return
               searchUser(username)
               setUsername("")
