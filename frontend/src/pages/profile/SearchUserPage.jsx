@@ -33,6 +33,7 @@ const SearchUserPage = () => {
             className="w-full flex"
             onSubmit={async (e) => {
               e.preventDefault();
+              setData(null)
               if(!username) return
               searchUser(username)
               setUsername("")
