@@ -54,12 +54,12 @@ const SearchUserPage = () => {
           </form>
         </div>
         {isPending && (
-          <div className="flex justify-center items-center w-full h-1/2 ">
+          <div className="flex justify-center items-center w-full mt-2 ">
             <LoadingSpinner />
           </div>
         )}
 
-        {data && (
+        {!isPending && data && (
           <Link to={`/profile/${data?.username}`} className="flex hover:bg-gray-800 p-4 gap-5">
             
             <div className="avatar">
